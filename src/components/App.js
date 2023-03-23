@@ -1,18 +1,27 @@
+import React from "react";
 import video from "../data/video.js";
+import Header from "./Header.js";
 
 function App() {
-  console.log("Here's your data:", video);
+  const videoArray = video.comments.map(comment => {
+    const container = [];
 
+    container.id = comment.user;
+    container.comment = comment.comment
+    return container
+  })
+  console.log(videoArray)
   return (
+    
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
+        <iframe
+          width="919"
+          height="525"
+          src={video.embedUrl}
+          frameBorder="0"
+          allowFullScreen
+        />
+        <Header videoArray={videoArray} title={video.title} views={video.views} uploadDate={video.createdAt}/>
     </div>
   );
 }
